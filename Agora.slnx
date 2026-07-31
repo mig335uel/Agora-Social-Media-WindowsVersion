@@ -1,0 +1,17 @@
+<Solution>
+  <Configurations>
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+    
+  </Configurations>
+  <Project Path="Agora.csproj">
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+    <Deploy />
+  </Project>
+  <Project Path="AgoraASMShield/AgoraASMShield.vcxproj" Id="2a800717-98ef-4443-a3a2-3bc825d1b54e">
+    <Platform Solution="*|ARM64" Project="x64" />
+  </Project>
+</Solution>

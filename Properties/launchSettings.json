@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Agora (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Agora (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

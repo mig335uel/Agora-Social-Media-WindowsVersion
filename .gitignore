@@ -1,0 +1,13 @@
+AgoraASMShield/
+AgoraASMShield/*
+.vs/
+.vs/*
+.bin/
+.bin/*
+out/
+out/*
+bin/
+bin/*
+
+obj/
+obj/*

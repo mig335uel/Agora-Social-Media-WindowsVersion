@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="Agora.Components.Post.PostCard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Agora.Components.Post"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Border
+        Margin="0,0,0,15"
+        Padding="15"
+        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+        BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+        BorderThickness="1"
+        CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Ellipse
+                    Width="40"
+                    Height="40"
+                    Margin="0,0,12,0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{x:Bind GetImage(PostData.user.ProfilePictureUrl), Mode=OneWay}" Stretch="UniformToFill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Spacing="3.5">
+
+                        <RichTextBlock>
+                            <Paragraph>
+                                <Run Text="{x:Bind PostData.user.DisplayName, Mode=OneWay}" />
+                            </Paragraph>
+                            <RichTextBlock.Style>
+                                <Style TargetType="RichTextBlock">
+                                    <Setter Property="FontSize" Value="14" />
+                                    <Setter Property="FontWeight" Value="Bold" />
+                                </Style>
+                            </RichTextBlock.Style>
+                        </RichTextBlock>
+                        <Image
+                            Width="18"
+                            Height="18"
+                            VerticalAlignment="Center"
+                            Visibility="{x:Bind PostData.user.VerifiedVisibility, Mode=OneWay}">
+                            <Image.Source>
+                                <SvgImageSource UriSource="ms-appx:///Assets/Insignia.svg" />
+                            </Image.Source>
+                        </Image>
+                    </StackPanel>
+                    <TextBlock Text="{x:Bind PostData.user.Username, Mode=OneWay}" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBlock Text="{x:Bind PostData.content, Mode=OneWay}" TextWrapping="Wrap" />
+                <!--  MediaGrid  -->
+                <local:MediaGrid ListaDeFotos="{x:Bind PostData.MediaList, Mode=OneWay}" />
+
+            </StackPanel>
+
+            <Grid Grid.Row="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                    x:Name="LikeButton"
+                    Grid.Column="0"
+                    Style="{ThemeResource TextBlockButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                x:Name="LikeIcon"
+                                Margin="0,0,5,0"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="20"
+                                Text="&#xEB51;" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="{x:Bind PostData.likes_count.ToString(), Mode=OneWay}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    x:Name="RepostButton"
+                    Grid.Column="1"
+                    Style="{ThemeResource TextBlockButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,5,0"
+                                FontFamily="Segoe Fluent Icons"
+                                FontSize="20"
+                                Text="&#xEDAB;" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="{x:Bind PostData.reposts_count.ToString(), Mode=OneWay}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button
+                    x:Name="CommentButton"
+                    Grid.Column="2"
+                    Style="{ThemeResource TextBlockButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0,0,5,0"
+                                FontFamily="Segoe Fluent Icons"
+                                FontSize="20"
+                                Text="&#xEC42;" />
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                Text="{x:Bind PostData.replies_count.ToString(), Mode=OneWay}" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+
+
+            </Grid>
+
+
+
+        </Grid>
+    </Border>
+</UserControl>

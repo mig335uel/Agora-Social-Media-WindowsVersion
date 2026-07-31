@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Agora.Views.Login.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Agora.Views.Login"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    
+    <!-- Cambiamos el StackPanel raíz por un Grid -->
+    <Grid>
+        <StackPanel
+            x:Name="LoginStackPanel"
+            Visibility="Visible"
+            Orientation="Vertical"
+            VerticalAlignment="Center"
+            Padding="50"
+            Spacing="15"
+            MinWidth="640"
+            MaxWidth="800">
+            <StackPanel.Resources>
+                <Style x:Key="TituloStyle" TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="40"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Padding" Value="7.5"/>
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+                <Style TargetType="PasswordBox">
+                    <Setter Property="CornerRadius" Value="5"/>
+                    <Setter Property="FlowDirection" Value="LeftToRight"/>
+                </Style>
+            </StackPanel.Resources>
+            <Image
+                Source="/Assets/AgorasLogo.png"
+                x:Name="LogoImageLogin"
+                />
+            <TextBlock x:Name="BienvenidaLogin" Style="{StaticResource TituloStyle}"/>
+            <TextBox x:Name="LoginInputEmail"
+                     PlaceholderText="Email"
+                     InputScope="EmailSmtpAddress"/>
+
+            <PasswordBox x:Name="LoginInputPassword" 
+
+                       PlaceholderText="Contraseña"
+                       PasswordRevealMode="Hidden"
+                       FlowDirection="LeftToRight"
+                        />
+            <Button x:Name="RegisterChange" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Content="Si no tiene cuenta, Registrese" Click="RegisterChange_Click"/>
+            <Button x:Name="LoginSubmit" 
+            HorizontalAlignment="Stretch"
+            Style="{StaticResource AccentButtonStyle}"
+            Padding="7.5"
+            Content="Inicia Sesión"
+            Click="LoginSubmit_Click"/>
+       
+        </StackPanel>
+        <Grid 
+            x:Name="RegisterStackPanel"
+            Visibility="Collapsed"
+            Padding="50"
+            
+            MinWidth="640"
+            MaxWidth="800">
+            <ScrollView
+                ContentOrientation="Vertical"
+                VerticalScrollBarVisibility="Hidden">
+                
+                <ScrollView.Content>
+                    <StackPanel
+                        Spacing="15"
+                        >
+                        <StackPanel.Resources>
+                            <Style x:Key="TituloStyle2" TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="40"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Padding" Value="7.5"/>
+                                <Setter Property="CornerRadius" Value="5"/>
+                            </Style>
+                            <Style TargetType="PasswordBox">
+                                <Setter Property="CornerRadius" Value="5"/>
+                                <Setter Property="FlowDirection" Value="LeftToRight"/>
+                            </Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="200"/>
+                                <Setter Property="Height" Value="200"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Image
+                         Source="/Assets/AgorasLogo.png"
+                         x:Name="LogoImageRegister"
+                         />
+                        <TextBlock x:Name="BienvenidaRegister" Style="{StaticResource TituloStyle2}"/>
+                        <TextBox x:Name="RegisterInputName"
+                            PlaceholderText="Nombre"
+                                 TextChanged="GenerarOpcionesDisplayName"/>
+                        <TextBox x:Name="RegisterInputLastName"
+                            PlaceholderText="Apellidos"
+                                 TextChanged="GenerarOpcionesDisplayName"/>
+                        <TextBox x:Name="RegisterInputUsername"
+                            PlaceholderText="Usuario"
+                                 TextChanged="GenerarOpcionesDisplayName"
+                                />
+                        <TextBox x:Name="RegisterInputEmail"
+                            PlaceholderText="Email"
+                            InputScope="EmailSmtpAddress" />
+                        <PasswordBox x:Name="RegisterInputPassword"
+                                     PlaceholderText="Contraseña"
+                                     PasswordRevealMode="Hidden"
+                                     />
+                        <PasswordBox x:Name="ConfirmPassword"
+                                     PlaceholderText="Confirmar Contraseña"
+                                     PasswordChanging="ConfirmPassword_PasswordChanging"
+                                     PasswordRevealMode="Hidden"
+                                     />
+
+                        <CalendarDatePicker x:Name="RegisterInputBirthDate"
+                            PlaceholderText="Fecha de nacimiento"
+                            MaxDate="{x:Bind MaxDate, Mode=OneWay}"
+                            MinDate="{x:Bind MinDate, Mode=OneWay}"
+                            HorizontalAlignment="Stretch"/>
+                        <ComboBox x:Name="ComboDisplayNames" 
+                          PlaceholderText="Elige tu Display Name..." 
+                          HorizontalAlignment="Stretch"/>
+                        <ComboBox x:Name="ComboGenerType" 
+                          PlaceholderText="Elige tu Género" 
+                          HorizontalAlignment="Stretch"
+                          SelectionChanged="ComboGenerType_SelectionChanged"/>
+                        <Button x:Name="LoginChange" Style="{ThemeResource TextBlockButtonStyle}" HorizontalAlignment="Center" Content="¿Tienes Cuenta? Inicia Sesión" Click="LoginChange_Click"/>
+                        <Button x:Name="RegisterSubmit" 
+                            HorizontalAlignment="Stretch"
+                            Style="{StaticResource AccentButtonStyle}"
+                            Padding="7.5"
+                            Content="Registrate"
+                            Click="RegisterSubmit_Click"
+                            Margin="0,0,0,2"/>
+                    </StackPanel>
+                </ScrollView.Content>
+            </ScrollView>
+            
+        </Grid>
+    </Grid>
+</Page>

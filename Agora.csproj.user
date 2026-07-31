@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</Source>
+    <SmallTileSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</SmallTileSource>
+    <MediumTileSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</MediumTileSource>
+    <WideTileSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</WideTileSource>
+    <LargeTileSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</LargeTileSource>
+    <AppIconSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</AppIconSource>
+    <SplashScreenSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</SplashScreenSource>
+    <PackageLogoSource>C:\Users\gomez\Agora-Social-Media\assets\AgorasAndroidLogo.png</PackageLogoSource>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <Page Update="Components\Post\MediaGrid.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <None Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </None>
+    <Page Update="Views\Main\Feed\Following.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Main\Feed\ForYouPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Main\Home.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Login\Login.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

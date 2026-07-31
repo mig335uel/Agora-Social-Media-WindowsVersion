@@ -1,0 +1,244 @@
+@startuml BBDD
+
+top to bottom direction
+skinparam linetype ortho
+
+class blocks {
+   created_at: timestamp with time zone
+   blocker_id: uuid
+   blocked_id: uuid
+}
+class chat_content {
+   chat_id: uuid
+   content: text
+   sender_id: uuid
+   created_at: timestamp
+   id: uuid
+}
+class chat_encripted_key {
+   chat_id: uuid
+   device_id: uuid
+   encripted_key: text
+   id: uuid
+}
+class chat_participants {
+   hidden_at: timestamp
+   left_at: timestamp
+   role: text
+   last_read_at: timestamp
+   chat_id: uuid
+   user_id: uuid
+}
+class chat_requests {
+   chat_id: uuid
+   sender_id: uuid
+   receiver_id: uuid
+   id: uuid
+}
+class chats {
+   name: text
+   type: text
+   created_by: uuid
+   id: uuid
+}
+class devices {
+   user_id: uuid
+   device_identifier: text
+   device_name: text
+   platform: text
+   fcm_token: text
+   created_at: timestamp with time zone
+   last_seen: timestamp with time zone
+   public_device_key: text
+   id: uuid
+}
+class follow_requests {
+   created_at: timestamp with time zone
+   requester_id: uuid
+   requested_id: uuid
+}
+class follows {
+   created_at: timestamp with time zone
+   follower_id: uuid
+   following_id: uuid
+}
+class likes {
+   created_at: timestamp with time zone
+   user_id: uuid
+   post_id: uuid
+}
+class media_feature {
+   post_id: uuid
+   image: text
+   created_at: timestamp with time zone
+   user_id: uuid
+   id: uuid
+}
+class media_feature_chat {
+   chat_id: uuid
+   sender_id: uuid
+   media_url: text
+   created_at: timestamp
+   message_id: uuid
+   id: uuid
+}
+class notifications {
+   receiver_id: uuid
+   sender_id: uuid
+   type: text
+   post_id: uuid
+   is_read: boolean
+   created_at: timestamp with time zone
+   text_notification: text
+   id: uuid
+}
+class post_mentions {
+   post_id: uuid
+   user_id: uuid
+}
+class post_topics {
+   post_id: uuid
+   topic: text
+}
+class post_viral_scores {
+   viral_score: double precision
+   created_at: timestamp with time zone
+   computed_at: timestamp with time zone
+   post_id: uuid
+}
+class posts {
+   user_id: uuid
+   content: text
+   parent_post_id: uuid
+   created_at: timestamp with time zone
+   likes_count: integer
+   replies_count: integer
+   reposts_count: integer
+   impressions_count: bigint
+   shares_count: integer
+   is_banned: boolean
+   id: uuid
+}
+class reports {
+   context: text
+   reporter_id: uuid
+   post_id: uuid
+   user_id: uuid
+   description: text
+   status: text
+   created_at: timestamp with time zone
+   reason: text
+   id: uuid
+}
+class reports_messages {
+   report_id: uuid
+   content: text
+   user_id: uuid
+   created_at: timestamp with time zone
+   id: uuid
+}
+class reposts {
+   created_at: timestamp with time zone
+   user_id: uuid
+   post_id: uuid
+}
+class sanciones {
+   user_id: uuid
+   count: integer
+   severity: text
+   message: text
+   created_at: timestamp with time zone
+   expires_at: timestamp with time zone
+   id: uuid
+}
+class trending_hashtags {
+   trend_id: uuid
+   hashtag: text
+   is_custom: boolean
+   created_by: uuid
+   created_at: timestamp with time zone
+   id: uuid
+}
+class trending_topics {
+   topic_name: text
+   category: text
+   region: text
+   volume_score: integer
+   created_at: timestamp with time zone
+   expires_at: timestamp with time zone
+   id: uuid
+}
+class user_interactions {
+   user_id: uuid
+   post_id: uuid
+   dwell_time_seconds: integer
+   created_at: timestamp with time zone
+   id: uuid
+}
+class user_interests {
+   interest_score: integer
+   user_id: uuid
+   category: varchar(50)
+}
+class users {
+   username: text
+   display_name: text
+   bio: text
+   profile_picture_url: text
+   created_at: timestamp with time zone
+   is_private: boolean
+   birth_date: date
+   gender: gender_type
+   name: text
+   last_name: text
+   is_verified: boolean
+   advertencias: integer
+   penalizaciones: integer
+   id: uuid
+}
+
+blocks              -[#595959,plain]-^  users              : "blocker_id:id"
+blocks              -[#595959,plain]-^  users              : "blocked_id:id"
+chat_content        -[#595959,plain]-^  chats              : "chat_id:id"
+chat_content        -[#595959,plain]-^  users              : "sender_id:id"
+chat_encripted_key  -[#595959,plain]-^  chats              : "chat_id:id"
+chat_encripted_key  -[#595959,plain]-^  devices            : "device_id:id"
+chat_participants   -[#595959,plain]-^  chats              : "chat_id:id"
+chat_participants   -[#595959,plain]-^  users              : "user_id:id"
+chat_requests       -[#595959,plain]-^  chats              : "chat_id:id"
+chat_requests       -[#595959,plain]-^  users              : "receiver_id:id"
+chat_requests       -[#595959,plain]-^  users              : "sender_id:id"
+chats               -[#595959,plain]-^  users              : "created_by:id"
+devices             -[#595959,plain]-^  users              : "user_id:id"
+follow_requests     -[#595959,plain]-^  users              : "requester_id:id"
+follow_requests     -[#595959,plain]-^  users              : "requested_id:id"
+follows             -[#595959,plain]-^  users              : "following_id:id"
+follows             -[#595959,plain]-^  users              : "follower_id:id"
+likes               -[#595959,plain]-^  posts              : "post_id:id"
+likes               -[#595959,plain]-^  users              : "user_id:id"
+media_feature       -[#595959,plain]-^  posts              : "post_id:id"
+media_feature       -[#595959,plain]-^  users              : "user_id:id"
+media_feature_chat  -[#595959,plain]-^  chat_content       : "message_id:id"
+media_feature_chat  -[#595959,plain]-^  chats              : "chat_id:id"
+media_feature_chat  -[#595959,plain]-^  users              : "sender_id:id"
+notifications       -[#595959,plain]-^  posts              : "post_id:id"
+notifications       -[#595959,plain]-^  users              : "sender_id:id"
+post_mentions       -[#595959,plain]-^  posts              : "post_id:id"
+post_mentions       -[#595959,plain]-^  users              : "user_id:id"
+post_topics         -[#595959,plain]-^  posts              : "post_id:id"
+post_viral_scores   -[#595959,plain]-^  posts              : "post_id:id"
+posts               -[#595959,plain]-^  posts              : "parent_post_id:id"
+posts               -[#595959,plain]-^  users              : "user_id:id"
+reports             -[#595959,plain]-^  posts              : "post_id:id"
+reports             -[#595959,plain]-^  users              : "reporter_id:id"
+reports             -[#595959,plain]-^  users              : "user_id:id"
+reports_messages    -[#595959,plain]-^  reports            : "report_id:id"
+reports_messages    -[#595959,plain]-^  users              : "user_id:id"
+reposts             -[#595959,plain]-^  posts              : "post_id:id"
+reposts             -[#595959,plain]-^  users              : "user_id:id"
+sanciones           -[#595959,plain]-^  users              : "user_id:id"
+trending_hashtags   -[#595959,plain]-^  trending_topics    : "trend_id:id"
+user_interactions   -[#595959,plain]-^  posts              : "post_id:id"
+user_interactions   -[#595959,plain]-^  users              : "user_id:id"
+user_interests      -[#595959,plain]-^  users              : "user_id:id"
+@enduml
