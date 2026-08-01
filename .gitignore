@@ -13,3 +13,6 @@ obj/
 obj/*
 .dll
 *.dll
+
+
+x64/*
