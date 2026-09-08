@@ -14,5 +14,5 @@ obj/*
 .dll
 *.dll
 
-
+AgoraMod_TemporaryKey.pfx
 x64/*
